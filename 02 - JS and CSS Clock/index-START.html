@@ -15,6 +15,62 @@
       </div>
     </div>
 
+  <script>  
+
+    const sH = document.querySelector('.second-hand');
+    const mH = document.querySelector('.min-hand');
+    const hH = document.querySelector('.hour-hand');
+
+    var sHRotation, mHRotation, hHRotation; 
+
+    function initClock(){
+      var time = new Date();
+      var min = time.getMinutes();
+      var hr = time.getHours();
+      hr > 12 ? hr = hr - 12 : hr = hr;
+
+      sHRotation = 0;
+      sH.style.transform = 'rotate(' + sHRotation + 'deg)';
+
+      mHRotation = (min * 6) + 90;
+      mH.style.transform = 'rotate(' + mHRotation + 'deg)';
+
+      hHRotation = (hr * 30) + 90;
+      hH.style.transform = 'rotate(' + hHRotation + 'deg)';
+    }
+
+    
+   
+    setInterval(function(){
+      // always increment or reset second hand    
+      sHRotation === 360 ? sHRotation = 6 : sHRotation += 6;
+      sH.style.transform = 'rotate(' + sHRotation  + 'deg)';
+
+      // if second hand is pointing to 12 check for other incrementations 
+      if(sHRotation === 90){
+        mHRotation === 360 ? mHRotation = 6 : mHRotation += 6; 
+        mH.style.transform = 'rotate(' + mHRotation + 'deg)';
+
+        // 
+        if (mHRotation === 90) {
+          hHRotation += 30;
+          hH.style.transform = 'rotate(' + hHRotation + 'deg)';
+        }
+      }
+
+    }, 1000)
+
+    initClock();
+
+    
+
+
+   
+  
+  
+  
+  </script>
+
 
   <style>
     html {
@@ -62,6 +118,18 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transition: all .5 ease;
+    }
+
+    .min-hand {
+      height: 6px;
+    }
+    .hour-hand {
+      height: 9px;
+    }
+    .second-hand {
+      height: 3px;
     }
 
   </style>
