@@ -17,11 +17,36 @@
 
   <script>  
 
+    // hands 
     const sH = document.querySelector('.second-hand');
     const mH = document.querySelector('.min-hand');
     const hH = document.querySelector('.hour-hand');
 
     var sHRotation, mHRotation, hHRotation; 
+
+    // METHOD 1: USE NEW DATE OBJECT EVERY SECOND 
+
+    // function setDate(){
+    //   const now = new Date();
+
+    //   const sec = now.getSeconds();
+    //   const secDegrees = (sec * 6) + 90;
+    //   sH.style.transform = `rotate(${secDegrees}deg)`;
+
+    //   const min = now.getMinutes();
+    //   const minDegrees = (min * 6) + 90;
+    //   mH.style.transform = `rotate(${minDegrees}deg)`;
+      
+    //   const hr = now.getHours();
+    //   const hrDegrees = (hr * 30) + 90;
+    //   hH.style.transform = `rotate(${hrDegrees}deg)`;
+    // }
+
+    // setInterval(setDate, 1000);   
+
+
+
+    // METHOD 2: INITIAL DATE OBJECT, THEN INCREMENT 
 
     function initClock(){
       var time = new Date();
@@ -39,36 +64,23 @@
       hH.style.transform = 'rotate(' + hHRotation + 'deg)';
     }
 
-    
-   
     setInterval(function(){
-      // always increment or reset second hand    
       sHRotation === 360 ? sHRotation = 6 : sHRotation += 6;
       sH.style.transform = 'rotate(' + sHRotation  + 'deg)';
 
-      // if second hand is pointing to 12 check for other incrementations 
       if(sHRotation === 90){
         mHRotation === 360 ? mHRotation = 6 : mHRotation += 6; 
         mH.style.transform = 'rotate(' + mHRotation + 'deg)';
 
-        // 
         if (mHRotation === 90) {
           hHRotation += 30;
           hH.style.transform = 'rotate(' + hHRotation + 'deg)';
         }
       }
-
     }, 1000)
 
     initClock();
 
-    
-
-
-   
-  
-  
-  
   </script>
 
 
@@ -118,8 +130,10 @@
       background: black;
       position: absolute;
       top: 50%;
+      /* so rotate not on center but on right corner */
       transform-origin: 100%;
-      transition: all .5 ease;
+      transition: all 0.5 ease;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
     .min-hand {
