@@ -22,10 +22,17 @@
 
   <style>
 
-    /*
-      misc styles, nothing to do with CSS variables
-    */
-
+    :root {
+      --spacing: 10px;
+      --background: #ffc600;
+      --blur: 10px;
+    }
+    img {
+      border-width: 10px;
+      border-style: solid;
+      border-color: var(--background);
+      filter: blur(--blur);
+    }
     body {
       text-align: center;
       background: #193549;
@@ -34,17 +41,24 @@
       font-weight: 100;
       font-size: 50px;
     }
-
     .controls {
       margin-bottom: 50px;
     }
-
     input {
       width: 100px;
     }
+
   </style>
 
   <script>
+
+    // on change of input value update css var to value 
+    const spacing = document.querySelector('#spacing');
+    console.log(spacing);
+    spacing.addEventListener('change', changeSpacing);
+    function changeSpacing(e){
+      root.style.setProperty('--spacing', `${spacing.nodeValue}px`)
+    }
   </script>
 
 </body>
