@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
 </head>
+
 <body>
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
@@ -21,18 +23,19 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
-
     :root {
       --spacing: 10px;
-      --background: #ffc600;
+      --base: #ffc600;
       --blur: 10px;
     }
+
     img {
-      border-width: 10px;
+      border-width: var(--spacing);
       border-style: solid;
-      border-color: var(--background);
-      filter: blur(--blur);
+      border-color: var(--base);
+      filter: blur(var(--blur));
     }
+
     body {
       text-align: center;
       background: #193549;
@@ -41,25 +44,42 @@
       font-weight: 100;
       font-size: 50px;
     }
+
     .controls {
       margin-bottom: 50px;
     }
+
     input {
       width: 100px;
     }
-
   </style>
 
   <script>
 
-    // on change of input value update css var to value 
-    const spacing = document.querySelector('#spacing');
-    console.log(spacing);
-    spacing.addEventListener('change', changeSpacing);
-    function changeSpacing(e){
-      root.style.setProperty('--spacing', `${spacing.nodeValue}px`)
+    const body = document.querySelector('body');
+
+    const blurInput = document.querySelector('#blur');
+    const changeBlur = (e) => {
+      body.style.setProperty('--blur', blurInput.value + 'px')
     }
+    blurInput.addEventListener('change', changeBlur);
+
+    const colorInput = document.querySelector('#base');
+    const changeColor = (e) => {
+      body.style.setProperty('--base', colorInput.value);
+    }
+    colorInput.addEventListener('change', changeColor);
+
+    const spacingInput = document.querySelector('#spacing');
+    const changeSpacing = (e) => {
+      body.style.setProperty('--spacing', spacingInput.value + 'px')
+    }
+    spacingInput.addEventListener('change', changeSpacing);
+
+  
+
   </script>
 
 </body>
+
 </html>
