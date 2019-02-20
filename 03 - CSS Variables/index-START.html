@@ -56,27 +56,26 @@
 
   <script>
 
+    /*
+      data-foo props of datset object allow us to pass additional properties of an element to further identify/distinguish it and in this case, apply a specific suffix to our css new value string
+    */
+
     const body = document.querySelector('body');
+    const inputs = document.querySelectorAll('.controls input');
+    console.log(inputs)
 
-    const blurInput = document.querySelector('#blur');
-    const changeBlur = (e) => {
-      body.style.setProperty('--blur', blurInput.value + 'px')
-    }
-    blurInput.addEventListener('change', changeBlur);
+    function handleUpdate() {
+      console.log(this);
+      let suffix = this.dataset.sizing || '';
+      body.style.setProperty(`--${this.name}`, this.value + suffix );
+    };
 
-    const colorInput = document.querySelector('#base');
-    const changeColor = (e) => {
-      body.style.setProperty('--base', colorInput.value);
-    }
-    colorInput.addEventListener('change', changeColor);
-
-    const spacingInput = document.querySelector('#spacing');
-    const changeSpacing = (e) => {
-      body.style.setProperty('--spacing', spacingInput.value + 'px')
-    }
-    spacingInput.addEventListener('change', changeSpacing);
-
-  
+    inputs.forEach(input => {
+      input.addEventListener('change', handleUpdate);
+    });
+    inputs.forEach(input => {
+        input.addEventListener('mousemove', handleUpdate);
+      });
 
   </script>
 
