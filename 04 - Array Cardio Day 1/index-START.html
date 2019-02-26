@@ -33,37 +33,30 @@
     // RETURN FALSE ARE FILTERED OUT 
     // 1. Filter the list of inventors for those who were born in the 1500's
     var filtered = inventors.filter(inv => inv.year >= 1500 && inv.year < 1600);
-    console.log(filtered);
+    console.table(filtered);
 
     // Array.prototype.map()
     // RESULT OF LOGIC ADDED TO NEW ARRAY
     // 2. Give us an array of the inventors' first and last names
     const names = inventors.map(i => i.first + ' ' + i.last);
-    console.log(names);
+    console.table(names);
 
     // Array.prototype.sort()
     // SORT MUST ITERATE OVER THE ARRAY RECURSIVELY UNTIL THAT ARRAY PASSES A TEST THAT SHOWS IT IS IN ORDER ???
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const sorted = inventors.sort((a, b) => b.year - a.year);
-    console.log(sorted);
+    const sorted = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+    console.table(sorted);
 
     // Array.prototype.reduce()
     // PERFORM OPERATIONS WITH CURRENT AND ACCUMULATOR
     // 4. How many years did all the inventors live?
     // why needed to state initial value?
-    const reducer = (accumulator, current) => {
-      let lifespan = current.passed - current.year;
-      return accumulator + lifespan; 
-    }
-    const tot = inventors.reduce(reducer, 0);
-    console.log(tot);
+    const yrs = inventors.reduce((total, inv) => total + (inv.passed - inv.year), 0);
+    console.log(yrs);
 
     // 5. Sort the inventors by years lived
-    const sortedByLifespan = inventors.sort((a,b) => {
-      let order = (a.passed - a.year) - (b.passed - b.year);
-      return order;
-    })
-    console.log(sortedByLifespan);
+    const oldest = inventors.sort( (a,b) => (b.passed - b.year) - (a.passed - a.year) ); // return pos, move a toward end of arr
+    console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -97,14 +90,14 @@
     ]
 
     const deBlvds = blvds.filter(blvd => blvd.includes(' de '));
-    console.log(deBlvds)
+    console.table(deBlvds)
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
     const sortedFolks = people.sort((a, b) => {
       return a.charAt(0) - b.charAt(0);
     });
-    console.log(sortedFolks);
+    console.table(sortedFolks);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
@@ -125,63 +118,44 @@
         totals.van++;
       } 
     })
-    console.log(totals);
+    console.table(totals);
 
 
+     /*======================================
+      // HOW TO DO A BUBBLE SORT
+      // (where things bubble into place 1 index at a time)
+
+      // compare first item and second item
+      // if second is smaller, flip their item order
+      // repeat for second and third item
+      // repeat for third and fourth etc until compared whole array
+      // repeate this process as many times as the length of the array
+     ==========================================*/
+
+      var arr = [9, 3, 6, 2, 7, 8, 9.9, 22, 101, .5, 777,       .000341, 20, 2, 2, 4, 8, 2, 4, 1];
 
 
+      const myBubbleSort = arr => {
+         for (var i = 0; i < arr.length; i++) {
+          arr.forEach((current, index) => {
+            var final = arr[arr.length - 1];
 
-
-     // TODO WRITE MY OWN SORT FUNCTION
-
-      // start 3412 
-      // look at [0]
-      // find smaller true so we stay on [0] 
-      // 1342 looking at [0] 
-      // foundsmaller no so go to [1]
-      // 1342 look at [1] and find smaller yes so
-      // now we have 1234 and stay on [1]
-      // find smaller no so examine at [2]
-      // find no so examine at [3]
-      // find no so done
-     
-      var arr = [5,4,6,2,7,1,8,4444,9999,3,77,88, .5,.4]; 
-
-      arr.forEach( (outerItem, outerIndex) => {
-        var foundSmaller;
-
-        do {
-          foundSmaller = false;
-
-          arr.forEach((innerItem, innerIndex) => {
-            if (innerIndex > outerIndex && innerItem < outerItem) {
-              // move the innerItem in front of the outerItem
-              arr.splice(innerIndex, 1); 
-              arr.splice(outerIndex, 0, innerItem); 
-              foundSmaller = true;
+            if (current != final) {
+              var nextIndex = index + 1;
+              var next = arr[nextIndex];
+              if (next < current) {
+                arr.splice(nextIndex, 1);
+                arr.splice(index, 0, next);
+              }
             }
           })
-        } while (foundSmaller === true)
-      })
+        }
+        return arr;
+      }
 
-      console.log(arr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      const bubbleSorted = myBubbleSort(arr);
+      console.table(bubbleSorted);
+   
 
 
   </script>
