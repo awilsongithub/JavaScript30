@@ -60,6 +60,18 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+     // DO IT IN CONSOLE OF WIKIPEDIA PAGE LIKE THIS:
+
+  //  var el = document.querySelector('.mw-category');
+  //  var links = el.querySelectorAll('a');
+  //  var linksArray = Array.from(links);
+  //  var streetNames = linksArray.map(link => link.textContext);
+  //  console.log(streetNames);
+  //  var deArray = streetNames.filter(name => name.includes('de'));
+  // console.table(deArray);
+
+  // DO IT HERE WITH THIS ARRAY:
   
     const blvds = [
         "Boulevard Auguste - Blanqui",
@@ -92,6 +104,7 @@
     const deBlvds = blvds.filter(blvd => blvd.includes(' de '));
     console.table(deBlvds)
 
+
     // 7. sort Exercise
     // Sort the people alphabetically by last name
     const sortedFolks = people.sort((a, b) => {
@@ -103,23 +116,14 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
-    const totals = { car: 0, truck: 0, bike: 0, walk: 0, van: 0 };
-
-    data.forEach(mode => {
-      if (mode === 'car') {
-        totals.car++;
-      } else if (mode === 'truck'){
-        totals.truck++;
-      } else if (mode === 'bike') {
-        totals.bike++;
-      } else if (mode === 'walk') {
-        totals.walk++;
-      } else if (mode === 'van') {
-        totals.van++;
-      } 
-    })
-    console.table(totals);
-
+    var howMany = data.reduce( (accum, current) => {
+      if (!accum[current]) {
+        accum[current] = 0;
+      }
+      accum[current]++;
+      return accum;
+    }, {})
+    console.table(howMany);
 
      /*======================================
       // HOW TO DO A BUBBLE SORT
@@ -155,6 +159,8 @@
 
       const bubbleSorted = myBubbleSort(arr);
       console.table(bubbleSorted);
+
+      
    
 
 
