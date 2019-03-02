@@ -141,32 +141,24 @@
 
   <script>
 
-    var panels = document.getElementsByClassName('panel');
-    var panelsArr = Array.from(panels);
-   
-    function toggleOpen(e, panel) {
-      console.log('t open called with ' + panel.classList)
-      panelsArr.forEach(p => {
-        if(p === panel){
-          p.classList.toggle('open');
-          p.classList.toggle('open-active');
-        } else {
-          p.classList.remove('open');
-           p.classList.remove('open-active');
+    var panels = document.querySelectorAll('.panel');    
+    console.log(panels);
+
+    function toggleOpen() {
+      console.log('trace');
+      panels.forEach(p => {
+        if(p !== this){
+          p.classList.remove('open', 'open-active');
         }
       })
+      this.classList.toggle('open');
+      this.classList.toggle('open-active');
+
     }
 
-    panelsArr.forEach(panel => {
-      panel.addEventListener( 'click', createPanelClosureFn(panel) );
+    panels.forEach(panel => {
+      panel.addEventListener( 'click', toggleOpen );
     })
-
-    // return a closure with ongoing access to value of panel at time it was defined 
-    function createPanelClosureFn(panel) {
-      return function(e) {
-        toggleOpen(e, panel);
-      }
-    }
     
   </script>
 
