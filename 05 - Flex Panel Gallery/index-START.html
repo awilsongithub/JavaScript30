@@ -142,10 +142,8 @@
   <script>
 
     var panels = document.querySelectorAll('.panel');    
-    console.log(panels);
 
     function toggleOpen() {
-      console.log('trace');
       panels.forEach(p => {
         if(p !== this){
           p.classList.remove('open', 'open-active');
@@ -153,7 +151,6 @@
       })
       this.classList.toggle('open');
       this.classList.toggle('open-active');
-
     }
 
     panels.forEach(panel => {
