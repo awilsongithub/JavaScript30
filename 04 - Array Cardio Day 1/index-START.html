@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
 </head>
+
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
@@ -52,53 +54,53 @@
     // 4. How many years did all the inventors live?
     // why needed to state initial value?
     const yrs = inventors.reduce((total, inv) => total + (inv.passed - inv.year), 0);
-    console.log(yrs);
+    // console.log(yrs);
 
     // 5. Sort the inventors by years lived
-    const oldest = inventors.sort( (a,b) => (b.passed - b.year) - (a.passed - a.year) ); // return pos, move a toward end of arr
+    const oldest = inventors.sort((a, b) => (b.passed - b.year) - (a.passed - a.year)); // return pos, move a toward end of arr
     console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-     // DO IT IN CONSOLE OF WIKIPEDIA PAGE LIKE THIS:
+    // DO IT IN CONSOLE OF WIKIPEDIA PAGE LIKE THIS:
 
-  //  var el = document.querySelector('.mw-category');
-  //  var links = el.querySelectorAll('a');
-  //  var linksArray = Array.from(links);
-  //  var streetNames = linksArray.map(link => link.textContext);
-  //  console.log(streetNames);
-  //  var deArray = streetNames.filter(name => name.includes('de'));
-  // console.table(deArray);
+    //  var el = document.querySelector('.mw-category');
+    //  var links = el.querySelectorAll('a');
+    //  var linksArray = Array.from(links);
+    //  var streetNames = linksArray.map(link => link.textContext);
+    //  console.log(streetNames);
+    //  var deArray = streetNames.filter(name => name.includes('de'));
+    // console.table(deArray);
 
-  // DO IT HERE WITH THIS ARRAY:
-  
+    // DO IT HERE WITH THIS ARRAY:
+
     const blvds = [
-        "Boulevard Auguste - Blanqui",
-        "Boulevard Barbès",
-        "Boulevard Beaumarchais",
-        "Boulevard de l'Amiral-Bruix",
-        "Boulevard des Capucines",
-        "Boulevard de la Chapelle",
-        "Boulevard de Clichy",
-        "Boulevard du Crime",
-        "Boulevard Haussmann",
-        "Boulevard de l'Hôpital",
-        "Boulevard des Italiens",
-        "Boulevard de la Madeleine",
-        "Boulevard de Magenta",
-        "Boulevard Montmartre",
-        "Boulevard du Montparnasse",
-        "Boulevard Raspail",
-        "Boulevard Richard - Lenoir",
-        "Boulevard de Rochechouart",
-        "Boulevard Saint - Germain",
-        "Boulevard Saint - Michel",
-        "Boulevard de SéBastopol",
-        "Boulevard de StrasBourg",
-        "Boulevard du Temple",
-        "Boulevard Voltaire",
-        "Boulevard de la Zone"
+      "Boulevard Auguste - Blanqui",
+      "Boulevard Barbès",
+      "Boulevard Beaumarchais",
+      "Boulevard de l'Amiral-Bruix",
+      "Boulevard des Capucines",
+      "Boulevard de la Chapelle",
+      "Boulevard de Clichy",
+      "Boulevard du Crime",
+      "Boulevard Haussmann",
+      "Boulevard de l'Hôpital",
+      "Boulevard des Italiens",
+      "Boulevard de la Madeleine",
+      "Boulevard de Magenta",
+      "Boulevard Montmartre",
+      "Boulevard du Montparnasse",
+      "Boulevard Raspail",
+      "Boulevard Richard - Lenoir",
+      "Boulevard de Rochechouart",
+      "Boulevard Saint - Germain",
+      "Boulevard Saint - Michel",
+      "Boulevard de SéBastopol",
+      "Boulevard de StrasBourg",
+      "Boulevard du Temple",
+      "Boulevard Voltaire",
+      "Boulevard de la Zone"
     ]
 
     const deBlvds = blvds.filter(blvd => blvd.includes(' de '));
@@ -114,9 +116,9 @@
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
-    var howMany = data.reduce( (accum, current) => {
+    var howMany = data.reduce((accum, current) => {
       if (!accum[current]) {
         accum[current] = 0;
       }
@@ -125,45 +127,289 @@
     }, {})
     console.table(howMany);
 
-     /*======================================
-      // HOW TO DO A BUBBLE SORT
-      // (where things bubble into place 1 index at a time)
+    /*======================================
+     // HOW TO DO A BUBBLE SORT
+     // (where things bubble into place 1 index at a time)
 
-      // compare first item and second item
-      // if second is smaller, flip their item order
-      // repeat for second and third item
-      // repeat for third and fourth etc until compared whole array
-      // repeate this process as many times as the length of the array
-     ==========================================*/
+     // compare first item and second item
+     // if second is smaller, flip their item order
+     // repeat for second and third item
+     // repeat for third and fourth etc until compared whole array
+     // repeate this process as many times as the length of the array
+    ==========================================*/
 
-      var arr = [9, 3, 6, 2, 7, 8, 9.9, 22, 101, .5, 777,       .000341, 20, 2, 2, 4, 8, 2, 4, 1];
+    var arr = [9, 3, 6, 2, 7, 8, 9.9, 22, 101, .5, 777, .000341, 20, 2, 2, 4, 8, 2, 4, 1];
 
 
-      const myBubbleSort = arr => {
-         for (var i = 0; i < arr.length; i++) {
-          arr.forEach((current, index) => {
-            var final = arr[arr.length - 1];
+    const myBubbleSort = arr => {
+      for (var i = 0; i < arr.length; i++) {
+        arr.forEach((current, index) => {
+          var final = arr[arr.length - 1];
 
-            if (current != final) {
-              var nextIndex = index + 1;
-              var next = arr[nextIndex];
-              if (next < current) {
-                arr.splice(nextIndex, 1);
-                arr.splice(index, 0, next);
-              }
+          if (current != final) {
+            var nextIndex = index + 1;
+            var next = arr[nextIndex];
+            if (next < current) {
+              arr.splice(nextIndex, 1);
+              arr.splice(index, 0, next);
             }
-          })
+          }
+        })
+      }
+      return arr;
+    }
+
+    const bubbleSorted = myBubbleSort(arr);
+    console.table(bubbleSorted);
+
+
+
+
+    (function longestWord() {
+      var str = "big BIggfffffffffer Biggggest of all";
+      var longest = '';
+      var current = '';
+      var regex = new RegExp('[a-zA-Z]');
+
+      for (var i = 0; i < str.length; i++) {
+        var char = str.charAt(i); // I,s,  , t, h...
+        var isChar = regex.test(char);
+
+        if (isChar) {
+          // console.log(i, char)
+          current += char;
+          // console.log(current);
+          if (current.length > longest.length) {
+            longest = current;
+          }
+        } else {
+          // not a char, streak is broken start current again
+          current = '';
         }
-        return arr;
+
+      }
+      // console.log('longest is ' + longest)
+    })();
+
+
+
+    (function nextLetter(str) {
+      nextLtrStr = '';
+      var vowels = ['a', 'e', 'i', 'o', 'u'];
+
+      for (var i = 0; i < str.length; i++) {
+        let char = str.charAt(i);
+        let code = char.charCodeAt(0);
+        let next = String.fromCharCode(code + 1);
+        if (vowels.indexOf(next) > 0) {
+          next = next.toUpperCase();
+        }
+        nextLtrStr += next;
       }
 
-      const bubbleSorted = myBubbleSort(arr);
-      console.table(bubbleSorted);
+      return nextLtrStr;
+    })('i am a string')
 
+    // TAKE A NUM AND RETURN THE SUM OF ALL NUMBERS COUNTING UP TO IT FROM 1, INCLUDING ITSELF. FOR 4: 1+2+3+4 = 10.
+    var returnSum = (num) => {
+      var numArr = [];
+      for (var i = 1; i <= num; i++) {
+        numArr.push(i);
+      }
+
+      var total = numArr.reduce((total, item) => {
+        return total + item;
+      });
+      // console.log('total ', total)
+      return total;
+    }
+    returnSum(5); // 15 
+
+
+
+    var capitalizeFirstLetters = (str) => {
+      var newString = '';
+      var lastWasSpace;
+
+      for (var i = 0; i < str.length; i++) {
+        var char = str.charAt(i);
+
+        if (lastWasSpace || i === 0) {
+          char = char.toUpperCase();
+        }
+
+        newString += char;
+
+        // inform next loop if char is a first letter 
+        if (char === ' ') {
+          lastWasSpace = true;
+        } else {
+          lastWasSpace = false;
+        }
+
+      }
+      // console.log(newString);
+      return newString;
+    }
+
+    capitalizeFirstLetters('hello 1234 big world.')
+
+
+
+    /* 
+    ===================================================
+    CLOSET ENEMY CHALLENGE 
+    SOLVED MAR 7, 2019 IN 45 MIN. WITH NO HINTS 
+
+    Have the function ClosestEnemyII(strArr) read the matrix of numbers stored in strArr which will be a 2D matrix that contains only the integers 1, 0, or 2. Then from the position in the matrix where a 1 is, return the number of spaces either left, right, down, or up you must move to reach an enemy which is represented by a 2. You are able to wrap around one side of the matrix to the other as well. For example: if strArr is ["0000", "1000", "0002", "0002"] then this looks like the following:
+
+    0 0 0 0
+    1 0 0 0
+    0 0 0 2
+    0 0 0 2
+
+    For this input your program should return 2 because the closest enemy (2) is 2 spaces away from the 1 by moving left to wrap to the other side and then moving down once. The array will contain any number of 0's and 2's, but only a single 1. It may not contain any 2's at all as well, where in that case your program should return a 0.
+
+    Sample Test Cases
+    Input:["000", "100", "200"]
+    Output:1
+    Input:["0000", "2010", "0000", "2002"]
+    Output:2
+    ===========================================================
+    */
+
+    function closestEnemyII(strArr) {
+
+      var one;
+      var twos = [];
+      var distances = [];
+      var closest;
+
+      // GET LOCATIONS OF 1'S AND 2'S
+      strArr.forEach((row, indexOfRow) => {
+        // go thru strings in each row 
+        for (var strI = 0; strI < row.length; strI++) {
+          var char = row.charAt(strI);
+          if (char === '1') {
+            var rowOf1 = indexOfRow.toString();
+            var place = strI.toString();
+            one = rowOf1 + place; // '02'
+            console.log(one)
+          }
+          if (char === '2') {
+            var rowOf2 = indexOfRow.toString();
+            var place = strI.toString();
+            twos.push(rowOf2 + place); // '11'
+            console.log(twos)
+          }
+        }
+      })
+
+      // WE NOW HAVE LOCATIONS OF ONE AND TWOS SO
+      // GET DISTANCES BETWEEN THEM...
       
-   
+      // FOR EACH TWO CALCULATE DISTANCE TO 1 GOING DIRECT AND WRAPPING AROUND OUTSIDE OF MATRIX 
+      twos.forEach(two => {
+
+        var h = strArr.length;
+        var w = strArr[0].length;
+        console.log(h + ' strings and each string has ' + w)
+
+        // row is the first number, col is second 
+        var rowOf2 = two.charAt(0);
+        var colOf2 = two.charAt(1);
+
+        var rowOf1 = one.charAt(0);
+        var colOf1 = one.charAt(1);
+
+        var rowGap = Math.abs(rowOf2 - rowOf1);
+        var colGap = Math.abs(colOf2 - colOf1);
+        var dist = rowGap + colGap;
+        distances.push(dist);
+
+        // WRAP ON BOTH X AND Y
+
+        // postion in a row - length of row = distance to end of it plus 1 which is the "wrap"
+        var toR = Math.abs(colOf2 - w);
+        var toL = Math.abs(colOf1 - 0);
+        var toT = Math.abs(rowOf2 - h );
+        var toB = Math.abs(rowOf1 - 0);
+
+        var colGapWrap = toR + toL;
+        var rowGapWrap = toT + toB;
+
+        var distWrap = colGapWrap + rowGapWrap;
+        distances.push(distWrap);
+
+        // WRAP ON X, GO DIRECT ON Y
+        var wrapColDirectRow = colGapWrap + rowGap;
+        distances.push(wrapColDirectRow)
+        
+        // WRAP ON Y, GO DIRECT ON X
+        var wrapRowDirectCol = rowGapWrap + colGap;
+        distances.push(wrapRowDirectCol)
+
+
+
+      })
+
+      var closest = Math.min(...distances);
+      console.log('closest', closest);
+      return closest;
+
+    }
+
+    var strArray = ["0000", "1000", "0002", "0002"]  ;
+    closestEnemyII(strArray)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   </script>
 </body>
+
 </html>
