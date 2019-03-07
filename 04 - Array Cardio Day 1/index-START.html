@@ -308,12 +308,8 @@
       // WE NOW HAVE LOCATIONS OF ONE AND TWOS SO
       // GET DISTANCES BETWEEN THEM...
       
-      // FOR EACH TWO CALCULATE DISTANCE TO 1 GOING DIRECT AND WRAPPING AROUND OUTSIDE OF MATRIX 
+      // FOR EACH TWO CALCULATE DISTANCE TO 1 GOING DIRECT AND WRAPPING 
       twos.forEach(two => {
-
-        var h = strArr.length;
-        var w = strArr[0].length;
-        console.log(h + ' strings and each string has ' + w)
 
         // row is the first number, col is second 
         var rowOf2 = two.charAt(0);
@@ -327,17 +323,20 @@
         var dist = rowGap + colGap;
         distances.push(dist);
 
-        // WRAP ON BOTH X AND Y
+        // DISTANCE TO MATRIX EDGES
+        // USE WIDTH AND HEIGHT AND 0 IN RELATION TO POSITION OF 1, 2
+        var h = strArr.length;
+        var w = strArr[0].length;
+        console.log(h + ' strings and each string has ' + w)
 
-        // postion in a row - length of row = distance to end of it plus 1 which is the "wrap"
         var toR = Math.abs(colOf2 - w);
         var toL = Math.abs(colOf1 - 0);
         var toT = Math.abs(rowOf2 - h );
         var toB = Math.abs(rowOf1 - 0);
 
+        // WRAP ON BOTH X AND Y AXIS
         var colGapWrap = toR + toL;
         var rowGapWrap = toT + toB;
-
         var distWrap = colGapWrap + rowGapWrap;
         distances.push(distWrap);
 
@@ -348,9 +347,6 @@
         // WRAP ON Y, GO DIRECT ON X
         var wrapRowDirectCol = rowGapWrap + colGap;
         distances.push(wrapRowDirectCol)
-
-
-
       })
 
       var closest = Math.min(...distances);
