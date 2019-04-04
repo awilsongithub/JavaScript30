@@ -141,17 +141,20 @@
     var arr = [9, 3, 6, 2, 7, 8, 9.9, 22, 101, .5, 777, .000341, 20, 2, 2, 4, 8, 2, 4, 1];
 
 
-    const myBubbleSort = arr => {
+    const myBubbleSort = (arr, sortOrder) => {
       for (var i = 0; i < arr.length; i++) {
         arr.forEach((current, index) => {
-          var final = arr[arr.length - 1];
+          var final = arr[arr.length - 1]; // last item in arr
 
-          if (current != final) {
-            var nextIndex = index + 1;
-            var next = arr[nextIndex];
-            if (next < current) {
-              arr.splice(nextIndex, 1);
-              arr.splice(index, 0, next);
+          // if there is a next item then compare w current and flip as needed
+          if (current != final) { 
+            var next = arr[index + 1];
+            if (next < current && sortOrder === 'asc') {
+              arr.splice(index + 1, 1); // remove next
+              arr.splice(index, 0, next); // insert next 
+            } else if (next > current && sortOrder === 'desc'){
+              arr.splice(index, 1); // remove current
+              arr.splice(index + 1, 0, current); // insert current
             }
           }
         })
@@ -357,6 +360,89 @@
 
     var strArray = ["0000", "1000", "0002", "0002"]  ;
     closestEnemyII(strArray)
+
+
+
+    /**
+     * sort a strings letters 
+    */
+
+    // (function ltrSort('iqwewipe'){
+    //   let sorted = s.split("").sort().join("");
+    //   console.log(sorted);
+    //   return sorted;
+    // })();
+
+
+
+    /*
+    KAPREKARSCONSTANT
+    // sort in desc 9876 and save it
+    // sort in asc and save it 6789
+    // subtract and get result
+    // if result !== 6174, repeat
+    // find num times before = constant
+    */
+
+    var fourDigit = 0034;
+    console.log(fourDigit);
+    let timesCalled = 0
+
+    function KsC(num) {
+
+      let arr;
+      let ascArr;
+      let ascStr;
+      let descArr;
+      let descStr;
+      let result;
+      let KaprekarsConstant = 6174;
+
+      timesCalled ++;  
+
+      // convert str to array
+      num = num.toString();
+
+      // add zeroes as needed
+      if(num.length === 1){
+        num = '000' + num;
+      } else if (num.length === 2){
+        num = '00' + num;
+      } else if (num.length === 3){
+        num = '0' + num
+      }
+      console.log(num);
+
+      arr = num.split("");
+      console.log(arr);
+
+      // refactor myBubbleSort to get descending and convert arr to str
+      descArr = myBubbleSort(arr, 'desc');
+      descStr = descArr.join('');
+      console.log(descStr);
+
+      // call myBubbleSort to sort in ascending and convert arr to str
+      ascArr = myBubbleSort(arr, 'asc');
+      ascStr = ascArr.join('');
+      console.log(ascStr);
+
+      // subtract, check result, repeat if needed
+      result = descStr - ascStr;
+      console.log(result);
+      if (result === KaprekarsConstant){
+        console.log('called ' + timesCalled + ' times.');
+        return timesCalled;
+      } else {
+        KsC(result);
+      }
+    }
+    console.log( KsC(9987) )
+
+    
+
+    
+
+
 
 
 
